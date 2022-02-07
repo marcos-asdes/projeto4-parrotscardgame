@@ -7,6 +7,7 @@ function informedNumber() {
         }
     }
 }
+
 informedNumber();
 
 const cardBoard = document.querySelector("#cardboard");
@@ -57,6 +58,8 @@ function flipCard() {
     secondCard = this;
 
     checkForMatch();
+
+    playsNumber();
 }
 
 function checkForMatch() {
@@ -92,3 +95,10 @@ cards.forEach(card => card.addEventListener("click", flipCard));
         card.style.order = rand;
     })
 })()
+
+let plays = 0;
+function playsNumber() {
+    if(true) {
+        plays++
+    }
+}

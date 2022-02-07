@@ -9,11 +9,19 @@ body {
     background-color: #EEF9BF;
 }
 
+main {
+    margin: 0 auto;
+    margin-top: 47px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    max-width: 1060px;
+}
+
 h1 {
     text-align: center;
     margin-top: 40px;
-    margin-bottom: 20px;
-    
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -36,12 +44,6 @@ h1 {
     min-width: 117px;
     height: 33%;
     margin: 5px;
-/*     background-color: #A7E9AF;
-    border: 1px solid #99CEA8;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center; */
     transform-style: preserve-3d;
     transition: all .3s;
     position: relative;
@@ -72,4 +74,43 @@ h1 {
 
 .front-face {
     transform: rotateY(180deg);
+}
+
+@media screen and (max-width: 614px){
+    
+    h1 {
+        font-size: 36px;
+        line-height: 42px;
+        width: 312px;
+        word-break: break-word;
+        margin: 20px auto 0 auto;
+    }
+
+
+    main {
+        height: auto;
+        display: flex;
+        flex-direction: column;   
+    }
+
+    .card {
+        margin-bottom: 34px;
+        flex-shrink: 0;
+        height: 146px;
+        width: 117px;
+    }
+
+    .memory-card {
+        flex-shrink: 0;
+        height: 146px;
+        width: 117px;
+    }
+
+    #cardboard {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        flex-wrap: nowrap;
+    }
+
 }
