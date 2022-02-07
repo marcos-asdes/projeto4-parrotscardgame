@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #EEF9BF;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
+}
+
+#cardboard {
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.memory-card {
+    width: calc(25% - 10px);
+    min-width: 117px;
+    height: 33%;
+    margin: 5px;
+/*     background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    transform-style: preserve-3d;
+    transition: all .3s;
+    position: relative;
+    backface-visibility: hidden;
+}
+
+.memory-card:active {
+    transform: scale(0.97);
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+.front-face,
+.back-face {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+    background:#A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.front-face {
+    transform: rotateY(180deg);
+}
