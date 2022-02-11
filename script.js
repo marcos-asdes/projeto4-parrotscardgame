@@ -1,15 +1,6 @@
+/* global variables */
 let inputNumber;
-function informedNumber() {
-    while(true) {
-        inputNumber = parseInt(prompt("Digite um número par entre 4 e 14"));
-        if (inputNumber >= 4 && inputNumber <=14 && (inputNumber % 2) == 0 ) {
-            break;
-        }
-    }
-}
-
-informedNumber();
-
+let plays = 0;
 const cardBoard = document.querySelector("#cardboard");
 const imgsTotal = [
     'bobrossparrot.gif',
@@ -20,17 +11,32 @@ const imgsTotal = [
     'tripletsparrot.gif',
     'unicornparrot.gif'
 ];
+let cardHTML = "";
 
+/* start */
+
+informedNumber();
+
+function informedNumber() {
+    while(true) {
+        inputNumber = parseInt(prompt("Digite um número par entre 4 e 14"));
+        if (inputNumber >= 4 && inputNumber <=14 && (inputNumber % 2) == 0 ) {
+            break;
+        }
+    }
+}
+
+/* shuffles the images */
 imgsTotal.sort(comp);
 
 function comp(){
     return Math.random() - 0.5;
 }
 
+/* select the images according to the inputNumber */
 const imgs = imgsTotal.slice(0,inputNumber/2);
 
-let cardHTML = "";
-
+/* create the html structure of the cards */
 imgs.forEach(img => {
     cardHTML += `<div class="memory-card" data-identifier="card" data-card="${img}">
     <img class="front-face" data-identifier="front-face" src="images/${img}"/>
@@ -38,16 +44,19 @@ imgs.forEach(img => {
     </div>`;
 });
 
+/* duplicate the cards on board */
 cardBoard.innerHTML = cardHTML + cardHTML;
 
 /* end of html rendering */
 
+/* secondary global variables */
 const cards = document.querySelectorAll(".memory-card");
 let firstCard, secondCard;
 let lockCards = false;
 
 function flipCard() {
     if (lockCards) return false;
+
     this.classList.add("flip");
 
     if (!firstCard) {
@@ -63,8 +72,10 @@ function flipCard() {
 }
 
 function checkForMatch() {
+    /* boolean variable for comparing cards */
     let isMatch = firstCard.dataset.card === secondCard.dataset.card;
 
+    /* ternary operator ~ if isMatch variable is true, return false and call resetCards, otherwise, return true and call unFlipCards */
     !isMatch ? unFlipCards() : resetCards(isMatch);
 }
 
@@ -85,6 +96,8 @@ function resetCards(isMatch = false) {
     }
 
     [firstCard, secondCard, lockCards] = [null, null, false];
+
+    checkForEndGame();
 }
 
 cards.forEach(card => card.addEventListener("click", flipCard));
@@ -96,9 +109,16 @@ cards.forEach(card => card.addEventListener("click", flipCard));
     })
 })()
 
-let plays = 0;
-function playsNumber() {
+function playsNumber(){
     if(true) {
         plays++
     }
+}
+
+function checkForEndGame(){
+    const flipedCards = document.querySelectorAll(".flip");
+    setTimeout(() => {
+    if (flipedCards.length == inputNumber){
+        alert(`Parabéns, você ganhou em ${plays} jogadas!`);
+    }}, 1000)
 }
